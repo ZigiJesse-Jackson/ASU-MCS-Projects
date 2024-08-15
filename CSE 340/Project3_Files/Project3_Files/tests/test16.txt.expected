@@ -1,0 +1,11 @@
+a: int #
+b: int #
+c: int #
+d: bool #
+e: bool #
+g: bool #
+h: int #
+x: bool #
+k, l: ? #
+m: bool #
+n: bool #

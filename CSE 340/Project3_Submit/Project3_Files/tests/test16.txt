@@ -1,0 +1,7 @@
+a, b, c: int;
+d, e, g: bool;
+{
+    while( < c h){
+        x = + - > k l m n;
+    }
+}
