@@ -1,0 +1,42 @@
+
+syntax = "proto3";
+
+package project1_distributed_systems_jesse_zigi;
+
+enum Interface {
+    WITHDRAW = 0;
+    DEPOSIT = 1;
+    QUERY = 2;
+}
+
+enum Result {
+    SUCCESS = 0;
+    FAILURE = 1;
+}
+
+// amount is only added to message if interface is WITHDRAW or DEPOSIT
+message CustomerMessage {
+    int64 id = 1;
+    Interface interface = 2;
+    optional int64 amount = 3;
+}
+
+message BranchMessage {
+    Interface interface =1;
+    int64 amount = 2;
+}
+
+// balance is only added to message if interface is QUERY
+message Reply {
+    Interface interface = 1;
+    Result result = 2;
+    optional int64 balance = 3;
+}
+
+service BranchService{
+    // RPC for customer to branch requests
+    rpc Query(CustomerMessage) returns (Reply);
+
+    // RPC for branch to branch requests
+    rpc Propagate(BranchMessage) returns (Reply);
+}
